@@ -1,10 +1,15 @@
 import { useState, FC } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import DungeonNavBar from '../components/DungeonNavBar';
+import PartyDetails from '../components/PartyDetails';
 import { Container, Row, Col } from 'react-bootstrap';
 import PartyCard from '../components/PartyCard';
 
 
 const DungeonHome: FC = ()=>{
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   interface PartyCardProps {
     id: number;
     name: string;
@@ -69,7 +74,7 @@ const DungeonHome: FC = ()=>{
             })}
           </Col>
           <Col style={{height:"100vw", overflowY: "scroll"}}>
-            <div>sajdklsajdskaj</div>
+            <PartyDetails />
           </Col>
         </Row>
       </Container>
