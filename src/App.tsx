@@ -1,34 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import DungeonNavBar from './components/DungeonNavBar';
+import { Container, Row, Col } from 'react-bootstrap';
+import PartyCard from './components/PartyCard';
+import PartyMaker from './pages/PartyMaker';
+import MemberMaker from './pages/MemberMaker';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import DungeonHome from './pages/DungeonHome';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+ 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Routes>
+       <Route path="/" element={<Navigate to="/party-home" />} />
+       <Route path="/party-home" element={<DungeonHome />} />
+       <Route path="/make-party" element={<PartyMaker />} />
+       <Route path="/add-member" element={<MemberMaker />} />
+       {/* <Route path="/" element={isAuth ? <Navigate to="/new-log" /> : <Navigate to="/login" />} /> */}
+    </Routes>
   )
 }
 
-export default App
+export default App;
