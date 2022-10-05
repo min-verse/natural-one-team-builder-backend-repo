@@ -9,6 +9,7 @@ import PartyCard from '../components/PartyCard';
 
 const MemberMaker: FC = ()=>{
   interface MemberObj {
+    id:number;
     character_name: string;
     player_name: string;
     class_name: string;
@@ -19,7 +20,7 @@ const MemberMaker: FC = ()=>{
   }
 
   const partyState = useSelector((state: any) => state.party);
-  const [currentMembers, setCurrentMembers] = useState<MemberObj>([]);
+  const [currentMembers, setCurrentMembers] = useState<MemberObj[]>([]);
 
   useEffect(()=>{
     fetch(`http://localhost:9292/parties/${partyState.stats.id}`)

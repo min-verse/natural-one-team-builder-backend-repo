@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, FC } from "react";
 import Container from 'react-bootstrap/Container';
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import DiceLogo from "../assets/dice-logo.svg";
@@ -21,11 +21,11 @@ const DungeonNavBar: FC = () => {
           </Nav>
           <Nav>
 
-            <Nav.Link>
-              <Link to="/make-party">
+            
+              <NavLink to="/make-party">
                 Make a New Party
-              </Link>
-            </Nav.Link>
+              </NavLink>
+            
             <Nav.Link eventKey={2}>
               Edit Parties
             </Nav.Link>

@@ -52,7 +52,7 @@ const DungeonHome: FC = () => {
   const [parties, setParties] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:9292/parties/1')
+    fetch('http://localhost:9292/parties/first')
       .then(res => res.json())
       .then((firstParty) => {
         console.log(firstParty);

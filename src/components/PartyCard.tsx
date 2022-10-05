@@ -35,7 +35,8 @@ const PartyCard:FC<PartyCardProps> =({id,name, campaign, DM, description,showDet
     fetch(`http://localhost:9292/parties/${id}`,{
       method:'DELETE',
     });
-    navigate("/party-home");
+    //check this to see if it works
+    navigate(0);
   }
   
   return (
