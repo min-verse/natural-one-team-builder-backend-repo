@@ -22,11 +22,11 @@ const DungeonNavBar: FC = () => {
           <Nav>
 
             
-              <NavLink to="/make-party">
+              <NavLink className="navbar-option" to="/make-party">
                 Make a New Party
               </NavLink>
             
-            <NavLink to="/see-all-parties">
+            <NavLink className="navbar-option" to="/see-all-parties">
               Edit Parties
             </NavLink>
           </Nav>

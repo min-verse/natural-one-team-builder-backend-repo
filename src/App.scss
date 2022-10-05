@@ -18,3 +18,15 @@ font-family: 'Josefin Sans', sans-serif;
   text-decoration: none;
   text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
 }
+
+.navbar-option{
+  color: #fff;
+  font-weight: 100;
+  font-size: 20px;
+  padding: 0 20px;
+  text-decoration: none;
+  text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+  :hover{
+    color:yellow;
+  }
+}
