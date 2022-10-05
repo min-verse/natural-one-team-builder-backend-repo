@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import DungeonNavBar from '../components/DungeonNavBar';
 import PartyDetails from '../components/PartyDetails';
+import PartyCardAllDisplay from '../components/PartyCardAllDisplay';
 import { Container, Row, Col } from 'react-bootstrap';
 import PartyCard from '../components/PartyCard';
 
@@ -39,7 +40,7 @@ const SeeAllPartiesEdit: FC = () => {
                 <Row>
                     <Col xs={12} style={{ height: "100vw", overflowY: "scroll" }}>
                         {parties.map(({ id, name, campaign, DM, description, members }) => {
-                            return <PartyCard
+                            return <PartyCardAllDisplay
                                 key={id}
                                 id={id}
                                 name={name}
@@ -47,7 +48,6 @@ const SeeAllPartiesEdit: FC = () => {
                                 DM={DM}
                                 description={description}
                                 members={members}
-                                showDetails={showDetails}
                             />;
                         })}
                     </Col>

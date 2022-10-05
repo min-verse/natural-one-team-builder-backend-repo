@@ -45,7 +45,7 @@ const MemberMaker: FC = ()=>{
       <DungeonNavBar />
       <Container>
         <Row>
-          <h1 onClick={handleClick}>Click this</h1>
+          {/* <h1 onClick={handleClick}>Click this</h1> */}
           <Col xs={4}>
            <NewMemberForm handleNewMember={handleNewMember}/>
           </Col>

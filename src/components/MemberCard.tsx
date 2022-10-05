@@ -41,7 +41,6 @@ const MemberCard:FC<MemberCardProps> =({id,character_name, player_name, class_na
         <Card.Text>Class: {class_name} </Card.Text>
         <Card.Text>Race: {race} </Card.Text>
         <Card.Text>Alignment: {alignment}</Card.Text>
-        <Button variant="warning" style={{marginRight:5, marginBottom:5}}>Full Details</Button>
         <Button variant="warning" style={{marginRight:5, marginBottom:5}}>Edit</Button>
         <Button variant="warning" style={{marginRight:5, marginBottom:5}}>Delete</Button>
       </Card.Body>

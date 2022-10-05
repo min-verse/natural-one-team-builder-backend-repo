@@ -1,8 +1,8 @@
-import { useState, FC } from 'react'
+import { useState, useEffect, FC } from 'react'
 import DungeonNavBar from '../components/DungeonNavBar';
 import NewPartyForm from '../components/NewPartyForm';
 import { Container, Row, Col } from 'react-bootstrap';
-import PartyCard from '../components/PartyCard';
+import PartyCardAllDisplay from '../components/PartyCardAllDisplay';
 
 
 const PartyMaker: FC = ()=>{
@@ -17,6 +17,17 @@ const PartyMaker: FC = ()=>{
     showDetails: (id:number)=>void;
 }
 
+const [parties, setParties] = useState([]);
+
+useEffect(() => {
+  fetch('http://localhost:9292/parties')
+    .then(res => res.json())
+    .then((parties) => {
+      console.log(parties);
+      setParties(parties);
+    });
+}, []);
+
   return (
     <>
       <DungeonNavBar />
@@ -26,16 +37,17 @@ const PartyMaker: FC = ()=>{
            <NewPartyForm />
           </Col>
           <Col style={{height:"100vw", overflowY: "scroll"}}>
-          {/* {exampleArray.map(({id, name, campaign, DM, description}) => {
-              return <PartyCard 
-              key={id}
-              id={id}
-              name={name}
-              campaign={campaign}
-              DM={DM}
-              description={description}
+          {parties.map(({ id, name, campaign, DM, description, members }) => {
+              return <PartyCardAllDisplay
+                key={id}
+                id={id}
+                name={name}
+                campaign={campaign}
+                DM={DM}
+                description={description}
+                members={members}
               />;
-            })} */}
+            })}
           </Col>
         </Row>
       </Container>

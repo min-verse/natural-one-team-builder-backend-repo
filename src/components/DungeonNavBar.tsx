@@ -26,10 +26,9 @@ const DungeonNavBar: FC = () => {
                 Make a New Party
               </NavLink>
             
-            <Nav.Link eventKey={2}>
+            <NavLink to="/see-all-parties">
               Edit Parties
-            </Nav.Link>
-            <Nav.Link eventKey={3}>Profile</Nav.Link>
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -13,12 +14,24 @@ interface MemberObj {
   alignment: string;
   partyId: number;
 }
+
+interface MemberListObj{
+  id:number;
+  character_name: string;
+  player_name: string;
+  class_name: string;
+  race: string;
+  level: number;
+  alignment: string;
+  party_id: number;
+}
 interface NewMemberProps{
-  handleNewMember:(params1:MemberObj)=>void;
+  handleNewMember:(params1:MemberListObj)=>void;
 }
 
 const NewMemberForm: FC<NewMemberProps> = ({handleNewMember}) => {
 
+  const navigate = useNavigate();
   const partyState = useSelector((state: any) => state.party);
 
   function onMemberSubmit(e: React.SyntheticEvent): void {
@@ -42,9 +55,18 @@ const NewMemberForm: FC<NewMemberProps> = ({handleNewMember}) => {
       nameOfRace: target.nameOfRace.value,
       level: target.level.value,
       alignment: target.alignment.value,
-      // placeholder partyid value
       partyId: partyState.stats.id
     }
+
+    // const newMemberListObj: MemberListObj = {
+    //   character_name: target.characterName.value,
+    //   player_name: target.playerName.value,
+    //   class_name: target.nameOfClass.value,
+    //   race: target.nameOfRace.value,
+    //   level: target.level.value,
+    //   alignment: target.alignment.value,
+    //   party_id: partyState.stats.id
+    // }
 
     console.log(newMember);
 
@@ -59,14 +81,16 @@ const NewMemberForm: FC<NewMemberProps> = ({handleNewMember}) => {
     .then(res=>res.json())
     .then((data)=>{
       console.log(data);
+      handleNewMember(data);
     })
     .catch((error)=>{
       alert(`Error: ${error}`);
     })
 
-    handleNewMember(newMember);
-    console.log(newMember);
+  }
 
+  function handleHomeClick(): void{
+    navigate("/party-home");
   }
 
   return (
@@ -115,8 +139,11 @@ const NewMemberForm: FC<NewMemberProps> = ({handleNewMember}) => {
             </Form.Select>
           </Form.Group>
 
-          <Button style={{ marginTop: 10 }} variant="primary" type="submit">
+          <Button style={{ marginTop: 10, marginRight:10}} variant="primary" type="submit">
             Add Member
+          </Button>
+          <Button onClick={handleHomeClick} style={{ marginTop: 10}} variant="primary" type="submit">
+            Done Editing
           </Button>
         </Form>
       </Card.Body>
