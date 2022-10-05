@@ -1,9 +1,16 @@
 import React, { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setParty } from '../state/party';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const NewPartyForm: FC = () => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     interface PartyObj {
         partyName: string;
         campaignName: string;
@@ -28,10 +35,23 @@ const NewPartyForm: FC = () => {
             dmName: target.dmName.value,
             description: target.description.value,
             //placeholder userId value
-            userId: 99
+            userId: 2
         }
 
-        console.log(newParty);
+        fetch("http://localhost:9292/parties", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(newParty)
+        }).then(res => res.json())
+          .then((objRes) => {
+            console.log(objRes);
+              dispatch(setParty(objRes));
+              navigate("/add-member");
+            }
+          );
 
     }
 

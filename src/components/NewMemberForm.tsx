@@ -1,21 +1,30 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const NewMemberForm: FC = () => {
-  interface MemberObj {
-    characterName: string;
-    playerName: string;
-    nameOfClass: string;
-    nameOfRace: string;
-    level: number;
-    alignment: string;
-    partyId: number;
-  }
+interface MemberObj {
+  characterName: string;
+  playerName: string;
+  nameOfClass: string;
+  nameOfRace: string;
+  level: number;
+  alignment: string;
+  partyId: number;
+}
+interface NewMemberProps{
+  handleNewMember:(params1:MemberObj)=>void;
+}
+
+const NewMemberForm: FC<NewMemberProps> = ({handleNewMember}) => {
+
+  const partyState = useSelector((state: any) => state.party);
 
   function onMemberSubmit(e: React.SyntheticEvent): void {
     e.preventDefault();
+    console.log(partyState);
+    console.log(partyState.stats.id);
     const target = e.target as typeof e.target & {
       characterName: { value: string };
       playerName: { value: string };
@@ -34,9 +43,28 @@ const NewMemberForm: FC = () => {
       level: target.level.value,
       alignment: target.alignment.value,
       // placeholder partyid value
-      partyId: 99
+      partyId: partyState.stats.id
     }
 
+    console.log(newMember);
+
+    fetch(`http://localhost:9292/members`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(newMember)
+    })
+    .then(res=>res.json())
+    .then((data)=>{
+      console.log(data);
+    })
+    .catch((error)=>{
+      alert(`Error: ${error}`);
+    })
+
+    handleNewMember(newMember);
     console.log(newMember);
 
   }

@@ -1,15 +1,41 @@
+import React, { FC } from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 
-function PartyDetails() {
+interface PartyObj{
+    id: number;
+    name: string;
+    campaign: string;
+    description: string;
+    DM: string;
+    user_id: number;
+}
+interface MemberObj {
+    id: number;
+    character_name: string;
+    player_name: string;
+    class_name: string;
+    race: string;
+    level: number;
+    alignment: string;
+}
+interface PartyCardProps {
+    party: {};
+    members: MemberObj[];
+}
+
+const PartyDetails: FC<PartyCardProps> = ({party, members}) => {
+
+    const {id, name, campaign, description, DM} = party;
+
     return (
         <Card className="card-component" border="warning" bg="dark" style={{ width: "100%", height: "100%", color: "white" }}>
-            <Card.Header>Example Campaign</Card.Header>
+            <Card.Header>{campaign}</Card.Header>
             <Card.Body>
-                <Card.Title>Example Party Name</Card.Title>
-                <Card.Text><em>DM:</em> Example DM Name</Card.Text>
+                <Card.Title>{name}</Card.Title>
+                <Card.Text><em>DM:</em> {DM}</Card.Text>
                 <Card.Text>
-                    Example Description
+                    {description}
                 </Card.Text>
                 <Card.Title>Party Members</Card.Title>
                 <Table style={{ color: 'white' }}>
@@ -24,7 +50,19 @@ function PartyDetails() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {members.map((person, index)=>{
+                            return [
+                                <tr key={index}>
+                                    <td>{person.character_name}</td>
+                                    <td>{person.player_name}</td>
+                                    <td>{person.class_name}</td>
+                                    <td>{person.race}</td>
+                                    <td>{person.level}</td>
+                                    <td>{person.alignment}</td>
+                                </tr>
+                            ];
+                        })}
+                        {/* <tr>
                             <td>character 1</td>
                             <td>player 1</td>
                             <td>bard</td>
@@ -47,7 +85,7 @@ function PartyDetails() {
                             <td>human</td>
                             <td>2</td>
                             <td>Neutral Evil</td>
-                        </tr>
+                        </tr> */}
                     </tbody>
                 </Table>
             </Card.Body>
