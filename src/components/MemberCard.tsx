@@ -20,17 +20,12 @@ const MemberCard:FC<MemberCardProps> =({id,character_name, player_name, class_na
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-//   function handleEdit():void{
-//     const editPartyObj: any = {
-//       id,
-//       name,
-//       campaign,
-//       DM,
-//       description
-//     };
-//     dispatch(setParty(editPartyObj));
-//     navigate("/edit-party");
-//   }
+  function handleDelete(): void{
+    fetch(`http://localhost:9292/members/${id}`,{
+      method:'DELETE',
+    });
+    navigate(0);
+  }
   
   return (
     <Card className="card-component" border="warning" bg="dark" style={{marginBottom:20}}>
@@ -41,8 +36,7 @@ const MemberCard:FC<MemberCardProps> =({id,character_name, player_name, class_na
         <Card.Text>Class: {class_name} </Card.Text>
         <Card.Text>Race: {race} </Card.Text>
         <Card.Text>Alignment: {alignment}</Card.Text>
-        <Button variant="warning" style={{marginRight:5, marginBottom:5}}>Edit</Button>
-        <Button variant="warning" style={{marginRight:5, marginBottom:5}}>Delete</Button>
+        <Button onClick={handleDelete} variant="warning" style={{marginRight:5, marginBottom:5}}>Delete</Button>
       </Card.Body>
     </Card>
   );

@@ -87,6 +87,12 @@ const NewMemberForm: FC<NewMemberProps> = ({handleNewMember}) => {
       alert(`Error: ${error}`);
     })
 
+    target.characterName.value="";
+    target.playerName.value="";
+    target.nameOfClass.value="";
+    target.nameOfRace.value="";
+    target.level.value=0;
+    target.alignment.value="";
   }
 
   function handleHomeClick(): void{
@@ -97,7 +103,7 @@ const NewMemberForm: FC<NewMemberProps> = ({handleNewMember}) => {
     <Card className="card-component" border="warning" bg="dark" style={{ width: "100%", height: "100%" }}>
       <Card.Header>Add a New Member</Card.Header>
       <Card.Body>
-        <Form style={{backgroundColor:'#212529', color:'white', borderColor:'yellow', padding:20, height:'100%'}} onSubmit={onMemberSubmit}>
+        <Form id="new-form" style={{backgroundColor:'#212529', color:'white', borderColor:'yellow', padding:20, height:'100%'}} onSubmit={onMemberSubmit}>
           <Form.Group className="mb-3" controlId="characterName">
             <Form.Label>Character Name</Form.Label>
             <Form.Control placeholder="Enter a character name" />

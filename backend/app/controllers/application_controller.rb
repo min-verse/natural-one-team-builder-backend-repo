@@ -144,8 +144,4 @@ class ApplicationController < Sinatra::Base
     user.to_json
   end
 
-  get "/checkToken" do
-
-  end
-
 end

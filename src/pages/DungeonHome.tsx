@@ -73,6 +73,7 @@ const DungeonHome: FC = () => {
     .then((data)=>{
       setCurrentParty(data);
     });
+    window.scrollTo(0,0);
   }
 
   return (
